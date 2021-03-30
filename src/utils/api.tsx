@@ -17,7 +17,7 @@ const axios = require('axios').default;
 const Api = {
   getSneakers: async (params: GetSneakersParams): Promise<any> => {
     try {
-      const response = await axios.get('http://api.thesneakerdatabase.com/v1/sneakers', {
+      const response = await axios.get('https://api.thesneakerdatabase.com/v1/sneakers', {
         params
       });
       return response.data;
@@ -27,7 +27,7 @@ const Api = {
   },
   getSneaker: async (sneakerId: string) => {
     try {
-      const response = await axios.get(`http://api.thesneakerdatabase.com/v1/sneakers/${sneakerId}`);
+      const response = await axios.get(`https://api.thesneakerdatabase.com/v1/sneakers/${sneakerId}`);
       return response.data;
     } catch (err) {
       console.error('Api:getSneaker: ' + err);
