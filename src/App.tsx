@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Overview from './Components/Overview';
 import Comparator from './Components/Comparator';
 import Header from './Components/Header';
+import './App.sass';
 
 const App = () => {
   return (
