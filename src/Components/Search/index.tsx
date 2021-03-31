@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import api from '../utils/api';
+import api from '../../utils/api';
 import { useFormik } from 'formik';
 import SearchFieldResultsProps from './SearchFieldResults';
 

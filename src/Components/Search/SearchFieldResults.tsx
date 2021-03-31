@@ -1,5 +1,6 @@
 import React from 'react';
 import './SearchFieldResults.sass';
+import fallbackImage from '../../assets/fallbackImage.jpg';
 
 interface SearchFieldResultsProps {
   sneakerResults: Sneaker[];
@@ -13,7 +14,7 @@ const SearchFieldResults = ({ sneakerResults, onClick }: SearchFieldResultsProps
         return (
           <div className="sneakerContainer" key={sneakerResult.id} tabIndex={index} onClick={() => onClick(sneakerResult.id)}>
             <div className="sneakerThumbnail">
-              <img src={sneakerResult.media.thumbUrl} alt={sneakerResult.title} />
+              <img src={sneakerResult.media.thumbUrl ? sneakerResult.media.thumbUrl : fallbackImage} alt={sneakerResult.title} />
             </div>
             <div className="sneakerInfo">
               <div className="sneakerBrand">{sneakerResult.brand}</div>

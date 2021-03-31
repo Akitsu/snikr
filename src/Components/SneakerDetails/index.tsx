@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import api from '../utils/api';
+import api from '../../utils/api';
 import './SneakerDetails.sass';
+import fallbackImage from '../../assets/fallbackImage.jpg';
 
 interface SneakerDetailsProps {
   sneakerId: string;
@@ -28,7 +29,7 @@ const SneakerDetails = ({ sneakerId }: SneakerDetailsProps) => {
   return (
     <div className="sneakerDetails">
       <div className="sneakerImage">
-        <img src={sneakerData.media.smallImageUrl} alt={sneakerData.title} />
+        <img src={sneakerData.media.smallImageUrl ? sneakerData.media.smallImageUrl : fallbackImage} alt={sneakerData.title} />
       </div>
       <div className="sneakerDataField">
         <div className="sneakerLabel">Brand</div>
