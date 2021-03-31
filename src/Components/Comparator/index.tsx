@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Search from '../Search';
 import SneakerDetails from '../SneakerDetails';
 import './Comparator.sass';
+import { useHistory, useLocation } from 'react-router-dom';
 
 const Comparator = () => {
-  const [firstSelectedSneaker, setFirstSelectedSneaker] = useState<string>('');
-  const [secondSelectedSneaker, setSecondSelectedSneaker] = useState<string>('');
+  const history = useHistory();
+  const location = useLocation();
+  const firstSneaker = new URLSearchParams(location.search).get('firstSneaker');
+  const secondSneaker = new URLSearchParams(location.search).get('secondSneaker');
+
+  const setFirstSelectedSneaker = (sneakerId: string) => {
+    const secondSneakerParam = secondSneaker ? `&secondSneaker=${secondSneaker}` : '';
+    history.push({ pathname: '/compare', search: `?firstSneaker=${sneakerId}${secondSneakerParam}` });
+  };
+
+  const setSecondSelectedSneaker = (sneakerId: string) => {
+    const firstSneakerParam = firstSneaker ? `firstSneaker=${firstSneaker}&` : '';
+    history.push({ pathname: '/compare', search: `?${firstSneakerParam}secondSneaker=${sneakerId}` });
+  };
 
   return (
     <div className="comparator">
@@ -19,8 +32,8 @@ const Comparator = () => {
       </div>
       <div className="compareContainer">
         <div className="sneakerLabels"></div>
-        <div className="sneakerDetails">{firstSelectedSneaker && <SneakerDetails sneakerId={firstSelectedSneaker} />}</div>
-        <div className="sneakerDetails">{secondSelectedSneaker && <SneakerDetails sneakerId={secondSelectedSneaker} />}</div>
+        <div className="sneakerDetails">{firstSneaker && <SneakerDetails sneakerId={firstSneaker} />}</div>
+        <div className="sneakerDetails">{secondSneaker && <SneakerDetails sneakerId={secondSneaker} />}</div>
       </div>
     </div>
   );

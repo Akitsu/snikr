@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
+import './Navigation.sass';
 
 interface NavigationProps {
   page: number;
@@ -21,7 +22,7 @@ const Navigation = ({ page, limit, sneakerCount, setPage }: NavigationProps) => 
   };
 
   return (
-    <div>
+    <div className="navigation">
       <div>
         Showing {page * limit + 1} to {page * limit + limit} of {sneakerCount} entries
       </div>

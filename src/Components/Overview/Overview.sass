@@ -1,11 +1,19 @@
 .tools
   display: flex
   justify-content: space-between
+  padding-bottom: 10px
+  div
+    display: flex
+    white-space: break-spaces
+    align-items: center
+    button
+      margin-left: 20px
 .table
   display: table
   width: 100%
   .tableHead
     display: table-header-group
+    font-weight: bold
   .tableBody
     display: table-row-group
   .tableRow
@@ -13,5 +21,6 @@
     .tableCell
       display: table-cell
       padding: 5px 30px 5px 5px
+      vertical-align: middle
       img
         width: 40px

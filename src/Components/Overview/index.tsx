@@ -5,6 +5,7 @@ import Search from './Search';
 import Limiter from './Limiter';
 import Navigation from './Navigation';
 import SneakerTable from './SneakerTable';
+import { useHistory } from 'react-router-dom';
 
 const Overview = () => {
   const [sneakerData, setSneakerData] = useState<Sneaker[]>([]);
@@ -12,6 +13,8 @@ const Overview = () => {
   const [limit, setLimit] = useState<number>(10);
   const [page, setPage] = useState<number>(0);
   const [name, setName] = useState<string>();
+  const [selectedSneakers, setSelectedSneakers] = useState<string[]>([]);
+  const history = useHistory();
 
   useEffect(() => {
     const getSneakerFromApi = async () => {
@@ -26,13 +29,30 @@ const Overview = () => {
     getSneakerFromApi();
   }, [page, limit, name]);
 
+  const toggle = (sneakerId: string) => {
+    if (selectedSneakers.includes(sneakerId)) {
+      setSelectedSneakers((prevSelectedSneakers) => prevSelectedSneakers.filter((sneaker) => sneaker !== sneakerId));
+    } else {
+      setSelectedSneakers((prevSelectedSneakers) => [...prevSelectedSneakers, sneakerId]);
+    }
+  };
+
+  const compare = () => {
+    history.push({ pathname: '/compare', search: `?firstSneaker=${selectedSneakers[0]}&secondSneaker=${selectedSneakers[1]}` });
+  };
+
   return (
     <>
       <div className="tools">
-        <Limiter setLimit={setLimit} />
+        <div>
+          <Limiter setLimit={setLimit} />
+          <button type="button" disabled={selectedSneakers.length !== 2} onClick={compare}>
+            Compare
+          </button>
+        </div>
         <Search setName={setName} />
       </div>
-      <SneakerTable sneakerData={sneakerData} />
+      <SneakerTable sneakerData={sneakerData} selectedSneakers={selectedSneakers} toggle={toggle} />
       <Navigation page={page} limit={limit} sneakerCount={sneakerCount} setPage={setPage} />
     </>
   );

@@ -1,11 +1,12 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
 import api from '../../utils/api';
 import { useFormik } from 'formik';
 import SearchFieldResultsProps from './SearchFieldResults';
+import './Search.sass';
 
 interface SearchProps {
   submitButtonText: string;
-  onSelect: Dispatch<SetStateAction<string>>;
+  onSelect: (sneakerId: string) => void;
 }
 
 const Search = ({ submitButtonText, onSelect }: SearchProps) => {
