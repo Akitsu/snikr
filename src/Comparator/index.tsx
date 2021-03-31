@@ -11,10 +11,10 @@ const Comparator = () => {
     <div className="comparator">
       <div className="searchFields">
         <div className="searchField">
-          <Search onSelect={setFirstSelectedSneaker} />
+          <Search onSelect={setFirstSelectedSneaker} submitButtonText="Search" />
         </div>
         <div className="searchField">
-          <Search onSelect={setSecondSelectedSneaker} />
+          <Search onSelect={setSecondSelectedSneaker} submitButtonText="Search" />
         </div>
       </div>
       <div className="compareContainer">

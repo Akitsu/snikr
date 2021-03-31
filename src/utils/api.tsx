@@ -1,6 +1,6 @@
 interface GetSneakersParams {
-  limit: String;
-  page?: String;
+  limit: Number;
+  page?: Number;
   styleId?: String;
   name?: String;
   shoe?: String;
