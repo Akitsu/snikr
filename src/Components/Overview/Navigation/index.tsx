@@ -9,6 +9,8 @@ interface NavigationProps {
 }
 
 const Navigation = ({ page, limit, sneakerCount, setPage }: NavigationProps) => {
+  const lastPage = Math.ceil(sneakerCount / limit);
+
   const previousPage = () => {
     if (page > 0) {
       setPage((prevPage) => prevPage - 1);
@@ -16,7 +18,7 @@ const Navigation = ({ page, limit, sneakerCount, setPage }: NavigationProps) => 
   };
 
   const nextPage = () => {
-    if (page < sneakerCount) {
+    if (page + 1 < lastPage) {
       setPage((prevPage) => prevPage + 1);
     }
   };
@@ -33,11 +35,15 @@ const Navigation = ({ page, limit, sneakerCount, setPage }: NavigationProps) => 
         <button type="button" disabled={true}>
           {page + 1}
         </button>
-        {[page + 1, page + 2, page + 3, page + 4, page + 5].map((pageNavigation) => (
-          <button key={pageNavigation} type="button" onClick={() => setPage(pageNavigation)}>
-            {pageNavigation + 1}
-          </button>
-        ))}
+        {[page + 1, page + 2, page + 3, page + 4, page + 5].map((pageNavigation) => {
+          return pageNavigation + 1 > lastPage ? (
+            <></>
+          ) : (
+            <button key={pageNavigation} type="button" onClick={() => setPage(pageNavigation)}>
+              {pageNavigation + 1}
+            </button>
+          );
+        })}
         <button type="button" onClick={nextPage}>
           Next
         </button>

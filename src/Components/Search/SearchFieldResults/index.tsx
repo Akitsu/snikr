@@ -1,6 +1,6 @@
 import React from 'react';
 import './SearchFieldResults.sass';
-import fallbackImage from '../../assets/fallbackImage.jpg';
+import fallbackImage from '../../../assets/fallbackImage.jpg';
 
 interface SearchFieldResultsProps {
   sneakerResults: Sneaker[];

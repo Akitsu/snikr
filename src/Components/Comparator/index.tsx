@@ -31,9 +31,8 @@ const Comparator = () => {
         </div>
       </div>
       <div className="compareContainer">
-        <div className="sneakerLabels"></div>
-        <div className="sneakerDetails">{firstSneaker && <SneakerDetails sneakerId={firstSneaker} />}</div>
-        <div className="sneakerDetails">{secondSneaker && <SneakerDetails sneakerId={secondSneaker} />}</div>
+        {firstSneaker && <SneakerDetails sneakerId={firstSneaker} />}
+        {secondSneaker && <SneakerDetails sneakerId={secondSneaker} />}
       </div>
     </div>
   );
